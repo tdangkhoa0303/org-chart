@@ -1,0 +1,15 @@
+.edge {
+    width: 50%;
+    height: 1px;
+    background-color: #cccccc;
+    position: absolute;
+    top: 0;
+}
+
+.edge_left {
+    left: 0;
+}
+
+.edge_right {
+    right: 0
+}
