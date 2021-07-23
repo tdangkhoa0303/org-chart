@@ -153,5 +153,7 @@ const data = {
 	],
 };
 
-const chart = new OrgChart(data);
+const chart = new OrgChart(data, {
+	deps: 2
+});
 document.getElementById('root').appendChild(chart);

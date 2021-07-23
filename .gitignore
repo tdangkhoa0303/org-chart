@@ -3,6 +3,3 @@
 
 # IDE
 /.vscode
-
-# build
-/dist
