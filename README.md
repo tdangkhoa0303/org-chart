@@ -1,6 +1,9 @@
 # org-chart
 Implement an organization chart in JavaScript
 
+## Demo :camera_flash: 
+https://tdangkhoa0303.github.io/org-chart/dist/
+
 ## Available Scripts
 
 In the project directory, you can run:
