@@ -18,6 +18,7 @@ export const createOrgCard = (data, onClick, isHead) => {
     <img class="org-card__picture" src="${picture}" alt="${name}" />
     <div class="org-card__name">${name}</div>
     <div class="org-card__title">${title}</div>
+    <span class="material-icons org-card__showChildren">keyboard_arrow_down</span>
     `
     nodeContainer.appendChild(node);
 
