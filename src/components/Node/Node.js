@@ -69,9 +69,13 @@ export class Node extends HTMLElement {
 		const { previousChildrenLength, data } = this;
 		const { subItems } = data;
 		const children = this.querySelector('.children-container');
+		const node = this.querySelector('.org-card');
+		const isSubItemsChanged = previousChildrenLength !== subItems.length;
+		if (isSubItemsChanged) {
+			node.classList.toggle('hasChild', subItems.length);
+		}
 
-		const shouldRenderChildren =
-			children && previousChildrenLength !== subItems.length;
+		const shouldRenderChildren = children && isSubItemsChanged;
 		if (shouldRenderChildren) {
 			this.buildChildrenNode(subItems);
 			this.updateChildrenDOM();
