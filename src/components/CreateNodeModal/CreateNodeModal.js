@@ -1,5 +1,5 @@
 import { Modal } from '../Modal/Modal';
-import './CreateNodeModal.css';
+import './CreateNodeModal.scss';
 import { Node } from '../../models';
 
 export class CreateNodeModal extends HTMLElement {
@@ -18,21 +18,47 @@ export class CreateNodeModal extends HTMLElement {
 		this.innerHTML = `
         <chart-modal modalTitle="Create new node" id="create-node">
 			<form action="#" id="create-node-form">
-				<div class="form-control">
-					<label for="id">ID</label>
-					<input type="number" name="id" id="id" required />
-				</div>
-				<div class="form-control">
-					<label for="name">Name</label>
-					<input type="text" name="name" id="name" required />
-				</div>
-				<div class="form-control">
-					<label for="title">Title</label>
-					<input type="text" name="title" id="title" required />
-				</div>
-				<div class="form-control">
-					<label for="title">Picture</label>
-					<input type="url" name="picture" id="picture" required />
+				<div class="row">
+					<div class="col-12">
+						<div class="form-control">
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name" required />
+						</div>
+					</div>		
+					<div class="col-12 col-sm-6">
+						<div class="form-control">
+							<label for="id">ID</label>
+							<input type="number" name="id" id="id" required />
+						</div>
+					</div>
+					<div class="col-12 col-sm-6">
+						<div class="form-control">
+							<label for="title">Title</label>
+							<input type="text" name="title" id="title" required />
+						</div>
+					</div>
+					<div class="col-4">
+						<img 
+							src="https://play-lh.googleusercontent.com/kgSwHEst2ENqeYoasBoxvUcPD97c0RdIUxRYy6KlMUjiWlwzvPqg4ZSNGrweAps_g7c" 
+							alt="demo-avatar" id="demo-avatar" 
+						/>
+					</div>
+					<div class="col-sm-8">
+						<div class="row">
+							<div class="col-12">
+								<div class="form-control">
+									<label for="title">Picture</label>
+									<input type="url" name="picture" id="picture" required />
+								</div>
+							</div>
+							<div class="col-12">
+								<div class="form-control">
+									<label for="dc">DC</label>
+									<input type="url" name="dc" id="dc" required />
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
                 <div class="form-footer">
                     <button class="btn btn-secondary btn-cancel" type="button">Cancle</button>
@@ -48,7 +74,9 @@ export class CreateNodeModal extends HTMLElement {
 
 	_attachEventHandlers() {
 		const cancelBtn = this.querySelector('.btn-cancel');
-		const form = document.getElementById('create-node-form');
+		const form = document.querySelector('#create-node-form');
+		const demo = document.querySelector('#demo-avatar');
+		const pictureInput = document.querySelector('#picture');
 		const modal = this.modal;
 
 		if (cancelBtn) {
@@ -89,6 +117,14 @@ export class CreateNodeModal extends HTMLElement {
 		if (modal) {
 			modal.addEventListener('close', () => {
 				form && form.reset();
+			});
+		}
+
+		if (pictureInput) {
+			pictureInput.addEventListener('blur', (event) => {
+				if (event.target.value) {
+					demo.setAttribute('src', event.target.value);
+				}
 			});
 		}
 	}

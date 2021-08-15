@@ -1,0 +1,42 @@
+@import './variables';
+
+/* Generate column class */
+@mixin grid($size) {
+	@for $i from 1 through $max-column {
+		@if ($size == '') {
+			.col-#{$i} {
+				flex: 0 0 $unit * $i;
+				padding: 0 $gutter;
+			}
+		} @else {
+			.col-#{$size}-#{$i} {
+				flex: 0 0 $unit * $i;
+				padding: 0 $gutter;
+			}
+		}
+	}
+}
+
+/* Breakpoints */
+@mixin breakpoint($type, $breakpoint) {
+	@if ($breakpoint == 'sm') {
+		@media only screen and (#{$type}-width: $sm) {
+			@content;
+		}
+	}
+	@if ($breakpoint == 'md') {
+		@media only screen and (#{$type}-width: $md) {
+			@content;
+		}
+	}
+	@if ($breakpoint == 'lg') {
+		@media only screen and (#{$type}-width: $lg) {
+			@content;
+		}
+	}
+	@if ($breakpoint == 'xl') {
+		@media only screen and (#{$type}-width: $xl) {
+			@content;
+		}
+	}
+}

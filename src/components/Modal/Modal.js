@@ -89,10 +89,7 @@ export class Modal extends HTMLElement {
             top: 50%;
             left: 50%;
             transform: translate(-50%,-50%);
-            border-radius: 2px;
-            min-width: 300px;
             border-radius: 4px;
-            min-width: 400px;
           }
           .title {
             font-size: 1rem;

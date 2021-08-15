@@ -1,5 +1,5 @@
 import { OrgChart } from './components';
-import './App.css';
+import './index.scss';
 
 const chart = new OrgChart({
 	deps: 2,

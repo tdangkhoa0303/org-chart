@@ -1,5 +1,5 @@
 import { createChildren, createEgde, createOrgCard } from 'utils';
-import './Node.css';
+import './Node.scss';
 
 export class Node extends HTMLElement {
 	constructor(data, level, isMostLeft, isMostRight, isHead) {

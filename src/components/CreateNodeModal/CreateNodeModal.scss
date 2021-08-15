@@ -1,0 +1,32 @@
+@import '../../scss/_mixins';
+
+.form-footer {
+	display: flex;
+	justify-content: flex-end;
+
+	& .btn {
+		margin-left: 1rem;
+	}
+}
+
+#create-node > .modal {
+}
+
+#create-node-form {
+	padding: 1rem 0;
+	min-width: 300px;
+}
+
+#demo-avatar {
+	width: 100%;
+	object-fit: cover;
+	border-radius: 50%;
+	border: 2px solid #99999940;
+	box-shadow: 1px 1px 12px 4px #11111110;
+}
+
+@include breakpoint(max, sm) {
+	#demo-avatar {
+		display: none;
+	}
+}

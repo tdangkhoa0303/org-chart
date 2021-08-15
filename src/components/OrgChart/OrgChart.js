@@ -1,7 +1,7 @@
 import { Node } from '../Node/Node';
 import { loadData } from '../../utils';
 import { DEFAULT_CHART_OPTION } from 'constants';
-import './OrgChart.css';
+import './OrgChart.scss';
 import { CreateNodeModal } from '../CreateNodeModal/CreateNodeModal';
 import { saveData } from '../../utils';
 
