@@ -1,4 +1,4 @@
-import {createChildren, createEgde, createOrgCard} from 'utils';
+import { createChildren, createEgde, createOrgCard } from 'utils';
 import './Node.css';
 
 export class Node extends HTMLElement {
@@ -9,22 +9,43 @@ export class Node extends HTMLElement {
 		this.isMostRight = isMostRight;
 		this.isHead = isHead;
 		this.level = level;
+
+		this.buildNode();
 	}
 
 	static Head(data) {
-		return new Node(data, 0, false, false, true)
+		return new Node(data, 0, false, false, true);
 	}
 
 	static Item(data, level, isMostLeft, isMostRight) {
-		return new Node(data, level, isMostLeft, isMostRight)
+		return new Node(data, level, isMostLeft, isMostRight);
 	}
 
 	connectedCallback() {
-		this.buildNode();
+		this._attachEventHandlers();
+	}
+
+	buildChildrenNode = (subItems) => {
+		this.previousChildrenLength = subItems.length;
+		this.childrenNode = createChildren(subItems);
+	};
+
+	updateChildrenDOM = () => {
+		const container = this.querySelector('.node');
+		const oldChildrenContainer = container.querySelector(
+			'.children-container'
+		);
+		if (oldChildrenContainer) {
+			return container.replaceChild(
+				this.childrenNode,
+				oldChildrenContainer
+			);
+		}
+		container.appendChild(this.childrenNode);
 	};
 
 	toggleShowChildren = (event) => {
-		const {subItems} = this.data;
+		const { subItems } = this.data;
 		if (!subItems.length) {
 			return;
 		}
@@ -39,14 +60,36 @@ export class Node extends HTMLElement {
 		}
 
 		if (!this.childrenNode) {
-			this.childrenNode = createChildren(subItems);
+			this.buildChildrenNode(subItems);
 		}
+		this.updateChildrenDOM();
+	};
 
-		container.appendChild(this.childrenNode);
+	renderChildren = () => {
+		const { previousChildrenLength, data } = this;
+		const { subItems } = data;
+		const children = this.querySelector('.children-container');
+
+		const shouldRenderChildren =
+			children && previousChildrenLength !== subItems.length;
+		if (shouldRenderChildren) {
+			this.buildChildrenNode(subItems);
+			this.updateChildrenDOM();
+		}
+	};
+
+	_attachEventHandlers = () => {
+		const addChildBtn = this.querySelector('.org-card__addChildren');
+		addChildBtn.addEventListener('click', (event) => {
+			event.stopPropagation();
+			window.editingNode = this;
+			const modal = document.querySelector('#create-node');
+			modal.setAttribute('visible', true);
+		});
 	};
 
 	buildNode = () => {
-		const {data, isMostLeft, isMostRight, isHead} = this;
+		const { data, isMostLeft, isMostRight, isHead } = this;
 		const container = document.createElement('div');
 		container.setAttribute('class', 'node');
 

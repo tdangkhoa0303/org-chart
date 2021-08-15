@@ -79,3 +79,9 @@
 .org-card__title {
 	font-size: 12px;
 }
+
+.org-card__addChildren {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
