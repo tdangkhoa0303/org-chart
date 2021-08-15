@@ -54,7 +54,7 @@ export class CreateNodeModal extends HTMLElement {
 							<div class="col-12">
 								<div class="form-control">
 									<label for="dc">DC</label>
-									<input type="url" name="dc" id="dc" required />
+									<input type="text" name="dc" id="dc" />
 								</div>
 							</div>
 						</div>
