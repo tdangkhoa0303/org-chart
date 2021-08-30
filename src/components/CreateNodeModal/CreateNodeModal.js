@@ -1,6 +1,6 @@
-import { Modal } from '../Modal/Modal';
+import {Modal} from '../Modal/Modal';
 import './CreateNodeModal.scss';
-import { Node } from '../../models';
+import {Node} from '../../models';
 
 export class CreateNodeModal extends HTMLElement {
 	constructor() {
@@ -68,10 +68,6 @@ export class CreateNodeModal extends HTMLElement {
 		</chart-modal>`;
 	}
 
-	attributeChangedCallback(name, _, newValue) {
-		console.log(name);
-	}
-
 	_attachEventHandlers() {
 		const cancelBtn = this.querySelector('.btn-cancel');
 		const form = document.querySelector('#create-node-form');
@@ -94,9 +90,9 @@ export class CreateNodeModal extends HTMLElement {
 					return;
 				}
 
-				const { name, id, title, picture } = form.elements;
+				const {name, id, title, picture} = form.elements;
 				const node = new Node(
-					id.value,
+					parseInt(id.value),
 					name.value,
 					title.value,
 					picture.value
@@ -108,7 +104,6 @@ export class CreateNodeModal extends HTMLElement {
 				) {
 					editingNode.data.subItems.push(node);
 					editingNode.renderChildren();
-					window.saveChartData();
 					this.modal.removeAttribute('visible');
 				}
 			});

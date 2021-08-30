@@ -9,7 +9,8 @@
   position: relative; }
 
 .children-container {
-  display: flex; }
+  display: flex;
+  align-items: flex-start; }
 
 .org-card {
   width: 12rem;
@@ -47,7 +48,9 @@
   .org-card__picture {
     border-radius: 50%;
     height: 6rem;
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    width: 6rem;
+    object-fit: cover; }
   .org-card__name, .org-card__title {
     text-align: center;
     margin-bottom: 0.5rem; }
